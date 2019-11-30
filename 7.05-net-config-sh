@@ -1,0 +1,40 @@
+#! /bin/bash
+
+cd /etc/sysconfig/
+cat > ifconfig.wlp58s0 << "EOF"
+ONBOOT=yes
+IFACE=wpl58s0
+SERVICE=ipv4-static
+IP=192.168.1.2
+GATEWAY=192.168.1.1
+PREFIX=24
+BROADCAST=192.168.1.255
+EOF
+
+cat > /etc/resolv.conf << "EOF"
+# Begin /etc/resolv.conf
+
+nameserver 127.0.0.53
+options edns0
+search hsd1.or.comcast.net
+
+# End /etc/resolv.conf
+EOF
+
+echo "XPS-13" > /etc/hostname
+
+cat > /etc/hosts << "EOF"
+# Begin /etc/hosts
+
+127.0.0.1   localhost
+127.0.1.1   XPS-13
+
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+
+# End /etc/hosts
+EOF
